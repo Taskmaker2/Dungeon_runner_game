@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=3 uid="uid://bnjx70vucrgdx"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_75kq2"]
+[ext_resource type="Texture2D" uid="uid://jf8255d1wx0e" path="res://96x96-64x64_dungeon_Denzi071022-2.png" id="1_fpwx4"]
+[ext_resource type="Texture2D" uid="uid://dg2s8d56oxbk" path="res://flipped.png" id="2_7jtwq"]
+[ext_resource type="Script" path="res://follow_Cam.gd" id="4_c0fvg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykgyu"]
+atlas = ExtResource("2_7jtwq")
+region = Rect2(64, 152, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1arxe"]
+atlas = ExtResource("2_7jtwq")
+region = Rect2(128, 152, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxsoa"]
+atlas = ExtResource("2_7jtwq")
+region = Rect2(192, 152, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77i2g"]
+atlas = ExtResource("2_7jtwq")
+region = Rect2(0, 152, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kes1k"]
+atlas = ExtResource("1_fpwx4")
+region = Rect2(192, 216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoip5"]
+atlas = ExtResource("1_fpwx4")
+region = Rect2(0, 216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb0ca"]
+atlas = ExtResource("1_fpwx4")
+region = Rect2(64, 216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_narxh"]
+atlas = ExtResource("1_fpwx4")
+region = Rect2(128, 216, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvkjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykgyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1arxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxsoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77i2g")
+}],
+"loop": true,
+"name": &"walk_down_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kes1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoip5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb0ca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_narxh")
+}],
+"loop": true,
+"name": &"walk_up_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yluuv"]
+radius = 13.0384
+
+[sub_resource type="Curve2D" id="Curve2D_gag2j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1600, 0, 0, 0, 0, 0, 1600, 960, 0, 0, 0, 0, 0, 960, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Player" type="Area2D"]
+position = Vector2(-3, 16)
+script = ExtResource("1_75kq2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -16)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_yvkjv")
+animation = &"walk_down_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 16)
+shape = SubResource("CircleShape2D_yluuv")
+
+[node name="follow_Cam" type="Camera2D" parent="."]
+script = ExtResource("4_c0fvg")
+
+[node name="MobPath" type="Path2D" parent="."]
+position = Vector2(-799, -479)
+curve = SubResource("Curve2D_gag2j")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
