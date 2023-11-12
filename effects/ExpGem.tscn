@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://0q2fedcda0cg"]
+
+[ext_resource type="Script" path="res://effects/ExpGem.gd" id="1_xqhqq"]
+[ext_resource type="Texture2D" uid="uid://cke6patfcr2ba" path="res://effects/exp_gem-removebg-preview.png" id="2_h45x7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov7gw"]
+radius = 115.004
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xa247"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_xqhqq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_h45x7")
+
+[node name="collection range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collection range"]
+shape = SubResource("CircleShape2D_ov7gw")
+
+[node name="pickup range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup range"]
+shape = SubResource("CircleShape2D_xa247")
+
+[node name="chasetimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="body_entered" from="collection range" to="." method="_on_collection_range_body_entered"]
+[connection signal="body_entered" from="pickup range" to="." method="_on_pickup_range_body_entered"]
+[connection signal="timeout" from="chasetimer" to="." method="_on_chasetimer_timeout"]

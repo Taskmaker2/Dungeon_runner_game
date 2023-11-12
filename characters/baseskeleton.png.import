@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jf8255d1wx0e"
-path="res://.godot/imported/96x96-64x64_dungeon_Denzi071022-2.png-d0800ee8769bd40ff0b91a904597bb81.ctex"
+uid="uid://dgr3mbgavx5ve"
+path="res://.godot/imported/baseskeleton.png-94f17f2480023dc5edd898838fd071ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://96x96-64x64_dungeon_Denzi071022-2.png"
-dest_files=["res://.godot/imported/96x96-64x64_dungeon_Denzi071022-2.png-d0800ee8769bd40ff0b91a904597bb81.ctex"]
+source_file="res://characters/baseskeleton.png"
+dest_files=["res://.godot/imported/baseskeleton.png-94f17f2480023dc5edd898838fd071ea.ctex"]
 
 [params]
 

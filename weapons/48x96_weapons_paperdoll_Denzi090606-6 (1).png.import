@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0tf076hvy7cy"
-path="res://.godot/imported/96x96-32x32_dungeon_Denzi071009-1 (2) (1).png-26d2598f893c9116069e94b99c5dcf2c.ctex"
+uid="uid://fumtclqxfbo8"
+path="res://.godot/imported/48x96_weapons_paperdoll_Denzi090606-6 (1).png-2c709339358c3ab26d5e43526558febf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://96x96-32x32_dungeon_Denzi071009-1 (2) (1).png"
-dest_files=["res://.godot/imported/96x96-32x32_dungeon_Denzi071009-1 (2) (1).png-26d2598f893c9116069e94b99c5dcf2c.ctex"]
+source_file="res://weapons/48x96_weapons_paperdoll_Denzi090606-6 (1).png"
+dest_files=["res://.godot/imported/48x96_weapons_paperdoll_Denzi090606-6 (1).png-2c709339358c3ab26d5e43526558febf.ctex"]
 
 [params]
 

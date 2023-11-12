@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg2s8d56oxbk"
-path="res://.godot/imported/flipped.png-dd9233cab8e798dc991fa8deda3081c8.ctex"
+uid="uid://d0tf076hvy7cy"
+path="res://.godot/imported/96x96-32x32_dungeon_Denzi071009-1 (2) (1).png-19a0593b10e43e6d6d7b501ab01f8a21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flipped.png"
-dest_files=["res://.godot/imported/flipped.png-dd9233cab8e798dc991fa8deda3081c8.ctex"]
+source_file="res://environments/96x96-32x32_dungeon_Denzi071009-1 (2) (1).png"
+dest_files=["res://.godot/imported/96x96-32x32_dungeon_Denzi071009-1 (2) (1).png-19a0593b10e43e6d6d7b501ab01f8a21.ctex"]
 
 [params]
 

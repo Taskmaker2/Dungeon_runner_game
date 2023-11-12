@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dra6py635lryr"]
+
+[ext_resource type="Script" path="res://enemies/mob.gd" id="1_t8mso"]
+[ext_resource type="Texture2D" uid="uid://ck14hftgetk2i" path="res://environments/32x32_monsters_Denzi120117-1.png" id="2_5ic6a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f38mm"]
+atlas = ExtResource("2_5ic6a")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06swj"]
+atlas = ExtResource("2_5ic6a")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxpcw"]
+atlas = ExtResource("2_5ic6a")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3iam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f38mm")
+}],
+"loop": true,
+"name": &"DarkKnight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06swj")
+}],
+"loop": true,
+"name": &"ghost",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxpcw")
+}],
+"loop": true,
+"name": &"slime",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bh5u"]
+size = Vector2(30, 30)
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_t8mso")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.6, 1.6)
+sprite_frames = SubResource("SpriteFrames_n3iam")
+animation = &"DarkKnight"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1bh5u")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

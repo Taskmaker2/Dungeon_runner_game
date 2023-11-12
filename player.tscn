@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bnjx70vucrgdx"]
+[gd_scene load_steps=17 format=3 uid="uid://bnjx70vucrgdx"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_75kq2"]
-[ext_resource type="Texture2D" uid="uid://jf8255d1wx0e" path="res://96x96-64x64_dungeon_Denzi071022-2.png" id="1_fpwx4"]
-[ext_resource type="Texture2D" uid="uid://dg2s8d56oxbk" path="res://flipped.png" id="2_7jtwq"]
+[ext_resource type="Texture2D" uid="uid://dg2s8d56oxbk" path="res://characters/flipped.png" id="2_7jtwq"]
+[ext_resource type="Texture2D" uid="uid://jf8255d1wx0e" path="res://characters/Knight.png" id="3_8t7pe"]
 [ext_resource type="Script" path="res://follow_Cam.gd" id="4_c0fvg"]
+[ext_resource type="PackedScene" uid="uid://c71lkgt4rxy4f" path="res://effects/effects.tscn" id="5_btmtc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykgyu"]
 atlas = ExtResource("2_7jtwq")
@@ -22,19 +23,19 @@ atlas = ExtResource("2_7jtwq")
 region = Rect2(0, 152, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kes1k"]
-atlas = ExtResource("1_fpwx4")
+atlas = ExtResource("3_8t7pe")
 region = Rect2(192, 216, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uoip5"]
-atlas = ExtResource("1_fpwx4")
+atlas = ExtResource("3_8t7pe")
 region = Rect2(0, 216, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yb0ca"]
-atlas = ExtResource("1_fpwx4")
+atlas = ExtResource("3_8t7pe")
 region = Rect2(64, 216, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_narxh"]
-atlas = ExtResource("1_fpwx4")
+atlas = ExtResource("3_8t7pe")
 region = Rect2(128, 216, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yvkjv"]
@@ -83,27 +84,41 @@ _data = {
 }
 point_count = 5
 
-[node name="Player" type="Area2D"]
-position = Vector2(-3, 16)
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+y_sort_enabled = true
+position = Vector2(0, -16)
+collision_layer = 3
+motion_mode = 1
 script = ExtResource("1_75kq2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -16)
+position = Vector2(-1, -33)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_yvkjv")
-animation = &"walk_down_left"
+animation = &"walk_up_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 16)
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_yluuv")
 
 [node name="follow_Cam" type="Camera2D" parent="."]
+position = Vector2(0, -2)
 script = ExtResource("4_c0fvg")
 
 [node name="MobPath" type="Path2D" parent="."]
-position = Vector2(-799, -479)
+position = Vector2(-954, -577)
+scale = Vector2(1.2, 1.2)
 curve = SubResource("Curve2D_gag2j")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="dash_cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="damage_cooldown" type="Timer" parent="."]
+
+[node name="Effects" parent="." instance=ExtResource("5_btmtc")]
+
+[connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="damage_cooldown" to="." method="_on_damage_cooldown_timeout"]

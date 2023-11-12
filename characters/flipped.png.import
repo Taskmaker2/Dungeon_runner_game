@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgp4422jfugp"
-path="res://.godot/imported/man-sw.png-fd4e2af7f9fe77658d4bffa062b743e8.ctex"
+uid="uid://dg2s8d56oxbk"
+path="res://.godot/imported/flipped.png-56d4e967140ed37c6a35868abe68fbc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://man-sw.png"
-dest_files=["res://.godot/imported/man-sw.png-fd4e2af7f9fe77658d4bffa062b743e8.ctex"]
+source_file="res://characters/flipped.png"
+dest_files=["res://.godot/imported/flipped.png-56d4e967140ed37c6a35868abe68fbc0.ctex"]
 
 [params]
 

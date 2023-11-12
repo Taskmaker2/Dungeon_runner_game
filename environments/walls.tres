@@ -1,0 +1,58 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dhpfks0epgcv2"]
+
+[ext_resource type="Texture2D" uid="uid://d0tf076hvy7cy" path="res://environments/96x96-32x32_dungeon_Denzi071009-1 (2) (1).png" id="1_v2rir"]
+[ext_resource type="Texture2D" uid="uid://d4ecot6g1c03i" path="res://environments/Destructible walls.png" id="2_lymwy"]
+[ext_resource type="PackedScene" uid="uid://b7hgig00bl7n4" path="res://environments/dustructible_wall.tscn" id="3_lgapl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uhb42"]
+texture = ExtResource("1_v2rir")
+margins = Vector2i(0, 32)
+texture_region_size = Vector2i(32, 64)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.9099, 25.1023, 0.125, 32.625, 15.875, 24.625, 15.9099, 20.5061, 0, 13.435, -15.5564, 18.7383)
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.5, 23.75, -16.3518, 18.3848, 0.0883884, 12.5511, 16.125, 19.625, 16.625, 21.875, 16.75, 25.375, -0.625, 32.25)
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.9983, 23.8649, -15.9983, 17.8544, 0.0883884, 12.7279, 15.468, 17.6777, 15.2912, 24.7487, 0.441942, 31.8198)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt0pr"]
+texture = ExtResource("2_lymwy")
+margins = Vector2i(0, 7)
+texture_region_size = Vector2i(32, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.198425, 31.1528, -16.0724, 23.4142, -16.125, 17.875, -0.396851, 12.1039, 15.75, 17.5, 16, 23.625)
+0:0/0/custom_data_0 = 10
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 31.6269, -16.0362, 24.7224, -15.8134, 19.5998, -0.375, 12.25, 16, 19.125, 16.0362, 23.3861)
+1:0/0/custom_data_0 = 10
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.15749, 31.0256, -16.064, 23.6235, -16.2215, 17.6389, 0, 11.75, 15.9065, 18.2689, 15.5915, 23.3085)
+2:0/0/custom_data_0 = 10
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vlx1u"]
+scenes/1/scene = ExtResource("3_lgapl")
+
+[resource]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "health"
+custom_data_layer_0/type = 2
+sources/0 = SubResource("TileSetAtlasSource_uhb42")
+sources/1 = SubResource("TileSetAtlasSource_gt0pr")
+sources/2 = SubResource("TileSetScenesCollectionSource_vlx1u")

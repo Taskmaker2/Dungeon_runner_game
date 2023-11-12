@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4r8vsk7etf3t"
-path="res://.godot/imported/man-ne.png-0f8e2cd20c1890e050cf4eb0a050a2bf.ctex"
+uid="uid://cke6patfcr2ba"
+path="res://.godot/imported/exp_gem-removebg-preview.png-a6de75d9ded44030df5ac6028f66fe95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://man-ne.png"
-dest_files=["res://.godot/imported/man-ne.png-0f8e2cd20c1890e050cf4eb0a050a2bf.ctex"]
+source_file="res://effects/exp_gem-removebg-preview.png"
+dest_files=["res://.godot/imported/exp_gem-removebg-preview.png-a6de75d9ded44030df5ac6028f66fe95.ctex"]
 
 [params]
 

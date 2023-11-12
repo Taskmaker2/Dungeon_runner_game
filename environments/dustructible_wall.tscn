@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7hgig00bl7n4"]
+
+[ext_resource type="Script" path="res://environments/dustructible_wall.gd" id="1_ta3a1"]
+[ext_resource type="Texture2D" uid="uid://d4ecot6g1c03i" path="res://environments/Destructible walls.png" id="1_y2ckp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r204n"]
+atlas = ExtResource("1_y2ckp")
+region = Rect2(0, 6, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i75d4"]
+atlas = ExtResource("1_y2ckp")
+region = Rect2(32, 6, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4uk5"]
+atlas = ExtResource("1_y2ckp")
+region = Rect2(64, 6, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ty3b"]
+atlas = ExtResource("1_y2ckp")
+region = Rect2(96, 6, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iur34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r204n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i75d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4uk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ty3b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DustructibleWall" type="Node2D" groups=["wall"]]
+script = ExtResource("1_ta3a1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iur34")
+
+[node name="collisionBox" type="StaticBody2D" parent="." groups=["wall"]]
+collision_layer = 9
+collision_mask = 9
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisionBox"]
+polygon = PackedVector2Array(0, 32, -16, 25, -16, 20, 0, 10, 16, 19, 16, 25)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqsr2qjhu0cfq"
-path="res://.godot/imported/man-se.png-eefdf67c09fc5906ffde964336cd7242.ctex"
+uid="uid://b5ufsubgsqeat"
+path="res://.godot/imported/48x96_weapons_paperdoll_Denzi090606-6-removebg-preview.png-9072e8345696c676d47c839060b86736.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://man-se.png"
-dest_files=["res://.godot/imported/man-se.png-eefdf67c09fc5906ffde964336cd7242.ctex"]
+source_file="res://weapons/48x96_weapons_paperdoll_Denzi090606-6-removebg-preview.png"
+dest_files=["res://.godot/imported/48x96_weapons_paperdoll_Denzi090606-6-removebg-preview.png-9072e8345696c676d47c839060b86736.ctex"]
 
 [params]
 

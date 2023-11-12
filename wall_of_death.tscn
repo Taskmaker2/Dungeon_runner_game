@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://im7vowlljsl2"]
+
+[ext_resource type="Script" path="res://wall_of_death.gd" id="1_27n2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j30rn"]
+size = Vector2(5000, 600)
+
+[node name="WallOfDeath" type="Area2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_27n2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(21, 993)
+rotation = 0.523599
+shape = SubResource("RectangleShape2D_j30rn")
+debug_color = Color(0.894118, 0.278431, 0.411765, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
