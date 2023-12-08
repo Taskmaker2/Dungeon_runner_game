@@ -7,8 +7,7 @@
 a = Vector2(-14, -86)
 b = Vector2(-2, -19)
 
-[node name="Effects" type="Node2D"]
-visible = false
+[node name="Effects" type="Node2D" groups=["swords"]]
 z_index = 1
 script = ExtResource("1_skh4r")
 
@@ -20,8 +19,6 @@ texture = ExtResource("2_lk1rf")
 [node name="Area2D" type="Area2D" parent="sword"]
 position = Vector2(-35.8056, -37.1881)
 rotation = 2.53073
-collision_layer = 0
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword/Area2D"]
 shape = SubResource("SegmentShape2D_4x3vl")

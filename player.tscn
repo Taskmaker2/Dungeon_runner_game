@@ -1,10 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnjx70vucrgdx"]
+[gd_scene load_steps=23 format=3 uid="uid://bnjx70vucrgdx"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_75kq2"]
 [ext_resource type="Texture2D" uid="uid://dg2s8d56oxbk" path="res://characters/flipped.png" id="2_7jtwq"]
+[ext_resource type="Texture2D" uid="uid://dtnk8t72qy6ct" path="res://characters/DeadKnight.png" id="2_wf7af"]
 [ext_resource type="Texture2D" uid="uid://jf8255d1wx0e" path="res://characters/Knight.png" id="3_8t7pe"]
 [ext_resource type="Script" path="res://follow_Cam.gd" id="4_c0fvg"]
-[ext_resource type="PackedScene" uid="uid://c71lkgt4rxy4f" path="res://effects/effects.tscn" id="5_btmtc"]
+[ext_resource type="PackedScene" uid="uid://b6wd1oqq6uti1" path="res://level_up.tscn" id="6_agisc"]
+[ext_resource type="AudioStream" uid="uid://darshspmskiky" path="res://sounds/hitHurt.wav" id="6_tjk37"]
+[ext_resource type="PackedScene" uid="uid://fw3qhtuvjjyp" path="res://win.tscn" id="6_xvx8i"]
+[ext_resource type="AudioStream" uid="uid://dr7pk16n0hgt5" path="res://sounds/powerUp.wav" id="7_v4xd8"]
+[ext_resource type="AudioStream" uid="uid://duo1xx5pun64" path="res://sounds/pickupCoin.wav" id="8_tgw3y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eovfp"]
+atlas = ExtResource("2_wf7af")
+region = Rect2(0, 0, 37, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykgyu"]
 atlas = ExtResource("2_7jtwq")
@@ -40,6 +49,14 @@ region = Rect2(128, 216, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yvkjv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eovfp")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ykgyu")
@@ -91,11 +108,11 @@ collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_75kq2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="SoldierSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -33)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_yvkjv")
-animation = &"walk_up_right"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
@@ -118,7 +135,24 @@ one_shot = true
 
 [node name="damage_cooldown" type="Timer" parent="."]
 
-[node name="Effects" parent="." instance=ExtResource("5_btmtc")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="levelUp" parent="CanvasLayer" instance=ExtResource("6_agisc")]
+visible = false
+
+[node name="win" parent="CanvasLayer" instance=ExtResource("6_xvx8i")]
+visible = false
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tjk37")
+
+[node name="levelupsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_v4xd8")
+
+[node name="expSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tgw3y")
+volume_db = -11.244
 
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="damage_cooldown" to="." method="_on_damage_cooldown_timeout"]

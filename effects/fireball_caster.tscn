@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmxqkg06fk2ga"]
+
+[ext_resource type="Script" path="res://effects/fireball_caster.gd" id="1_uggon"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgxhr"]
+radius = 448.59
+
+[node name="Fireball_caster" type="Node2D" groups=["fireballs"]]
+z_index = 1
+script = ExtResource("1_uggon")
+
+[node name="target_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="target_area"]
+shape = SubResource("CircleShape2D_qgxhr")
+
+[node name="cast_time" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="target_area" to="." method="_on_target_area_body_entered"]
+[connection signal="timeout" from="cast_time" to="." method="_on_cast_time_timeout"]

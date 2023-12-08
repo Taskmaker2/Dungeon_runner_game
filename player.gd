@@ -10,15 +10,22 @@ signal hit
 @export var health = 100
 var buffer = true
 var sword := preload("res://effects/effects.tscn")
-@export var experience = 0
+@export var experience = 4
+@export var experienceNeeded = 4
 
 var screen_size # Size of the game window.
 var canDash = true
 var dashing = false
 #var direction = Vector2.ZERO
 var facing
+@export var swordLevel = 0
+@export var waveLevel = 0
+@export var fireballLevel = 0
 
 @onready var axis = Vector2.ZERO
+
+func _ready():
+	$SoldierSprite.play("walk_up_right")
 
 func _physics_process(delta):
 	move(delta)
@@ -44,37 +51,43 @@ func move(delta):
 		apply_movement(axis *ACCELERATION * delta) #apply movement
 	
 	if Input.is_action_just_pressed("dash") and canDash:
-		printerr(velocity)
-		velocity = axis.normalized() * 2000
-		canDash = false
+		velocity = axis.normalized() * 1000
 		dashing = true
+		await get_tree().create_timer(0.8).timeout
+		canDash = false
 		#velocity *= 1.0 -(FRICTION *delta) #slowing down after dashing
-		printerr(velocity)
 		$dash_cooldown.start()	
 		
 	if velocity.length() > 0:
 		#velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
+		$SoldierSprite.play()
 	else:
-		$AnimatedSprite2D.stop()
-		$AnimatedSprite2D.frame = 3
+		$SoldierSprite.stop()
+		$SoldierSprite.frame = 3
 	
 	if velocity.y > 0:
-		$AnimatedSprite2D.animation = "walk_down_left"
+		$SoldierSprite.animation = "walk_down_left"
 	elif velocity.y < 0:
-		$AnimatedSprite2D.animation = "walk_up_right"
+		$SoldierSprite.animation = "walk_up_right"
 
 	if velocity.x != 0:
 		if velocity.x < 0:
-			$AnimatedSprite2D.flip_h = true
+			$SoldierSprite.flip_h = true
 		else:
-			$AnimatedSprite2D.flip_h = false
+			$SoldierSprite.flip_h = false
 		# See the note below about boolean assignment.
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		$SoldierSprite.flip_h = velocity.x < 0
 
-	$MobPath.position += velocity * delta
 	move_and_slide()
 	
+	if experience >= experienceNeeded:
+		experience -= experienceNeeded
+		experienceNeeded = int(1.5 * experienceNeeded)
+		get_tree().paused = true
+		$CanvasLayer/levelUp.visible = true
+		$levelupsound.play()
+		
+
 func apply_friction(amount):
 	if velocity.length() > amount:
 		velocity -= velocity.normalized() * amount
@@ -117,14 +130,23 @@ func start(pos):
 	show()
 	#$RigidBody2D/CollisionShape2D.disabled = false
 	
+func win():
+		get_tree().paused = true
+		$CanvasLayer/win.visible = true
+		$CanvasLayer/levelUp.visible = false
 
 func take_damage(damage):
 	if buffer: 
 		health -= damage
 		buffer = false
 		$damage_cooldown.start()
+		$SoldierSprite.modulate = Color.RED
+		await get_tree().create_timer(0.1).timeout
+		$SoldierSprite.modulate = Color.WHITE
+		$hurt.play()
 	if health <= 0:
-		hide()
+		$SoldierSprite.play("dead")
+		
 		
 func _on_dash_cooldown_timeout():
 	dashing = false
@@ -133,3 +155,6 @@ func _on_dash_cooldown_timeout():
 
 func _on_damage_cooldown_timeout():
 	buffer = true
+
+func playExpSound():
+	$expSound.play()

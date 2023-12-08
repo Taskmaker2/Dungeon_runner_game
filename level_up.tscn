@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6wd1oqq6uti1"]
+
+[ext_resource type="Script" path="res://level_up.gd" id="1_nxry8"]
+[ext_resource type="Texture2D" uid="uid://duigv2j52bn0c" path="res://weapons/48x96_weapons_paperdoll_Denzi090606-6 (1) (1).png" id="2_o1elh"]
+[ext_resource type="Texture2D" uid="uid://br8y8ffns34fj" path="res://effects/toppng.com-sound-wave-circle-wave-400x400.png" id="3_4d7x5"]
+[ext_resource type="Texture2D" uid="uid://bl38w2omifkeu" path="res://effects/toppng.com-fireball-png-748x732.png" id="4_t64ly"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -18.0
+offset_right = -31.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nxry8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -68.0
+offset_right = 167.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "=Level Up!="
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Container" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/Container"]
+layout_mode = 2
+text = "Sword +1"
+icon = ExtResource("2_o1elh")
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer/Container"]
+layout_mode = 2
+text = "Wave +1"
+icon = ExtResource("3_4d7x5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer/Container"]
+layout_mode = 2
+text = "fireball +1"
+icon = ExtResource("4_t64ly")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Panel/VBoxContainer/Container/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Container/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Container/Button3" to="." method="_on_button_3_pressed"]

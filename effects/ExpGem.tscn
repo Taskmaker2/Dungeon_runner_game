@@ -20,7 +20,7 @@ texture = ExtResource("2_h45x7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collection range"]
 shape = SubResource("CircleShape2D_ov7gw")
 
-[node name="pickup range" type="Area2D" parent="."]
+[node name="pickup range" type="Area2D" parent="." groups=["exp"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickup range"]
 shape = SubResource("CircleShape2D_xa247")

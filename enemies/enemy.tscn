@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://fqmjseits4u5"]
+[gd_scene load_steps=26 format=3 uid="uid://fqmjseits4u5"]
 
 [ext_resource type="Texture2D" uid="uid://dslhrgutvte2h" path="res://characters/skeleton.png" id="1_e0fit"]
 [ext_resource type="Texture2D" uid="uid://dgr3mbgavx5ve" path="res://characters/baseskeleton.png" id="2_kvnek"]
+[ext_resource type="AudioStream" uid="uid://ij5lkjfyvwl" path="res://sounds/bones/3.ogg" id="3_jnq28"]
 
 [sub_resource type="GDScript" id="GDScript_ltqjk"]
 script/source = "extends CharacterBody2D
@@ -14,11 +15,22 @@ var health = 10
 var damage = 5
 var dead = false
 var ExpGem := preload(\"res://effects/ExpGem.tscn\")
+var sounds =[]
 
 
 func _ready():
 	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
 	$AnimatedSprite2D.play(mob_types[randi() % mob_types.size()])
+	sounds.append(preload(\"res://sounds/bones/1.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/2.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/3.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/4.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/5.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/6.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/7.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/8.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/9.ogg\"))
+	sounds.append(preload(\"res://sounds/bones/0.ogg\"))
 
 func _physics_process(delta):
 	if !dead:
@@ -54,6 +66,9 @@ func _physics_process(delta):
 			$AnimatedSprite2D.stop()
 		if health <= 0:
 			$AnimatedSprite2D.play(\"dead\")
+			sounds.shuffle()
+			$AudioStreamPlayer.stream= sounds.front()
+			$AudioStreamPlayer.play()
 			$clear.start()
 			dead = true
 			collision_mask = 0
@@ -90,6 +105,21 @@ func _on_area_2d_body_exited(body):
 
 func _on_clear_timeout():
 	queue_free()
+
+
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	$sight_timer.start()
+
+
+func _on_sight_timer_timeout():
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	$sight_timer.stop()
+	$sight_timer.wait_time = 5
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8lgw"]
@@ -246,7 +276,7 @@ radius = 191.124
 radius = 8.06226
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8q4ky"]
-radius = 22.2846
+radius = 14.4444
 
 [node name="enemy" type="CharacterBody2D" groups=["mobs"]]
 y_sort_enabled = true
@@ -279,8 +309,21 @@ debug_color = Color(0.905882, 0.27451, 0.345098, 0.419608)
 wait_time = 2.0
 one_shot = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="sight_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jnq28")
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_shape_exited" from="DetectionArea" to="." method="_on_detection_area_body_shape_exited"]
+[connection signal="visibility_changed" from="DetectionArea" to="." method="_on_detection_area_visibility_changed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="child_entered_tree" from="Area2D/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="timeout" from="clear" to="." method="_on_clear_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="sight_timer" to="." method="_on_sight_timer_timeout"]

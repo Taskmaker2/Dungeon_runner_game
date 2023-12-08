@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dhpfks0epgcv2"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://dhpfks0epgcv2"]
 
 [ext_resource type="Texture2D" uid="uid://d0tf076hvy7cy" path="res://environments/96x96-32x32_dungeon_Denzi071009-1 (2) (1).png" id="1_v2rir"]
 [ext_resource type="Texture2D" uid="uid://d4ecot6g1c03i" path="res://environments/Destructible walls.png" id="2_lymwy"]
 [ext_resource type="PackedScene" uid="uid://b7hgig00bl7n4" path="res://environments/dustructible_wall.tscn" id="3_lgapl"]
+[ext_resource type="PackedScene" uid="uid://dncifa0qw6cgx" path="res://chest.tscn" id="4_c31os"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uhb42"]
 texture = ExtResource("1_v2rir")
@@ -17,6 +18,7 @@ texture_region_size = Vector2i(32, 64)
 4:0/0/physics_layer_0/angular_velocity = 0.0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.5, 23.75, -16.3518, 18.3848, 0.0883884, 12.5511, 16.125, 19.625, 16.625, 21.875, 16.75, 25.375, -0.625, 32.25)
 5:0/0 = 0
+5:0/0/modulate = Color(0.576471, 0.576471, 0.576471, 1)
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_0/angular_velocity = 0.0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.9983, 23.8649, -15.9983, 17.8544, 0.0883884, 12.7279, 15.468, 17.6777, 15.2912, 24.7487, 0.441942, 31.8198)
@@ -45,7 +47,12 @@ texture_region_size = Vector2i(32, 64)
 3:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vlx1u"]
+resource_name = "destWall"
 scenes/1/scene = ExtResource("3_lgapl")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vqk7l"]
+resource_name = "c"
+scenes/1/scene = ExtResource("4_c31os")
 
 [resource]
 tile_shape = 1
@@ -56,3 +63,4 @@ custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_uhb42")
 sources/1 = SubResource("TileSetAtlasSource_gt0pr")
 sources/2 = SubResource("TileSetScenesCollectionSource_vlx1u")
+sources/3 = SubResource("TileSetScenesCollectionSource_vqk7l")

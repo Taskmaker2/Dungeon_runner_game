@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://di3jrj2r025my"]
+[gd_scene load_steps=8 format=3 uid="uid://di3jrj2r025my"]
 
 [ext_resource type="TileSet" uid="uid://dhpfks0epgcv2" path="res://environments/walls.tres" id="1_00hmh"]
 [ext_resource type="PackedScene" uid="uid://bnjx70vucrgdx" path="res://player.tscn" id="1_rb4au"]
 [ext_resource type="PackedScene" uid="uid://fqmjseits4u5" path="res://enemies/enemy.tscn" id="3_qukj5"]
 [ext_resource type="PackedScene" uid="uid://0q2fedcda0cg" path="res://effects/ExpGem.tscn" id="4_iodn5"]
 [ext_resource type="PackedScene" uid="uid://b7hgig00bl7n4" path="res://environments/dustructible_wall.tscn" id="5_fgu46"]
+[ext_resource type="PackedScene" uid="uid://bkha1xapnx88m" path="res://boss.tscn" id="6_4noo6"]
+[ext_resource type="PackedScene" uid="uid://dncifa0qw6cgx" path="res://chest.tscn" id="7_8tdwu"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -37,3 +39,9 @@ position = Vector2(202, -329)
 
 [node name="Node2D2" parent="." instance=ExtResource("4_iodn5")]
 position = Vector2(-236, -672)
+
+[node name="Boss" parent="." instance=ExtResource("6_4noo6")]
+position = Vector2(744, -464)
+
+[node name="Chest" parent="." instance=ExtResource("7_8tdwu")]
+position = Vector2(25, -304)

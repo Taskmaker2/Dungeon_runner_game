@@ -29,6 +29,7 @@ func _on_collection_range_body_entered(body):
 func _on_pickup_range_body_entered(body):
 	if body.is_in_group("Player"):
 		body.experience += value
+		body.playExpSound()
 		queue_free()
 
 

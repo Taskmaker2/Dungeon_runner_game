@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkha1xapnx88m"]
+
+[ext_resource type="Script" path="res://boss.gd" id="1_e18gf"]
+[ext_resource type="Texture2D" uid="uid://dubmg1ei3vcbd" path="res://enemies/64x64_monsters_Denzi051029-3 (1) (1).png" id="1_wp4pg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbm2x"]
+size = Vector2(56, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx6cn"]
+size = Vector2(48, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvtjq"]
+radius = 144.0
+
+[node name="Boss" type="CharacterBody2D" groups=["boss", "mobs"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_e18gf")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_wp4pg")
+
+[node name="collisionarea" type="Area2D" parent="."]
+
+[node name="damageArea" type="CollisionShape2D" parent="collisionarea"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_pbm2x")
+
+[node name="special_attack_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_yx6cn")
+
+[node name="detectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectPlayer"]
+shape = SubResource("CircleShape2D_hvtjq")
+
+[connection signal="body_entered" from="collisionarea" to="." method="_on_collisionarea_body_entered"]
+[connection signal="timeout" from="special_attack_timer" to="." method="_on_special_attack_timer_timeout"]
+[connection signal="body_entered" from="detectPlayer" to="." method="_on_detect_player_body_entered"]

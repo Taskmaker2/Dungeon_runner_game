@@ -18,10 +18,6 @@ func _process(delta):
 	rotate(delta * speed)
 	
 
-func play():
-	#get_tree().parent_scene.add_child(Sword)
-	pass
-
 
 func _on_cast_time_timeout():
 	if cast:

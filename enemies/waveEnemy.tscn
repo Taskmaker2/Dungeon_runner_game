@@ -24,7 +24,7 @@ func _physics_process(delta):
 		if player_chase:
 			if position.distance_to(player.position) > 5:
 				velocity = (player.position -position).normalized() * speed
-				position = position.clamp(Vector2.ZERO, get_parent().slant)
+				#position = position.clamp(Vector2.ZERO, get_parent().slant)
 				move_and_slide()
 #			if position != player.position:
 #				position += (player.position - position ) / speed
@@ -49,6 +49,9 @@ func _physics_process(delta):
 					$AnimatedSprite2D.flip_h = false
 				else:
 					$AnimatedSprite2D.flip_h = true
+			move_and_slide()
+		else:
+			velocity = Vector2(100,-50)
 			move_and_slide()
 		if health <= 0:
 			$AnimatedSprite2D.play(\"dead\")
@@ -248,6 +251,7 @@ scale = Vector2(1.8, 1.8)
 script = SubResource("GDScript_ltqjk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.282353, 0.282353, 0.282353, 1)
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_vgjqu")
 animation = &"dead"
@@ -264,6 +268,7 @@ shape = SubResource("CircleShape2D_ajyky")
 shape = SubResource("CircleShape2D_hfrnu")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["mobs"]]
 shape = SubResource("CircleShape2D_8q4ky")

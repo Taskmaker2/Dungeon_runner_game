@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://din72kymnm682"]
+
+[ext_resource type="Script" path="res://BossMinion.gd" id="1_pq0ao"]
+[ext_resource type="Texture2D" uid="uid://c50mrj04mgvhn" path="res://enemies/Skeleton.png" id="2_373hs"]
+[ext_resource type="Texture2D" uid="uid://dslhrgutvte2h" path="res://characters/skeleton.png" id="3_ypbih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3ohf"]
+atlas = ExtResource("3_ypbih")
+region = Rect2(192, 0, 64, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akmj1"]
+atlas = ExtResource("2_373hs")
+region = Rect2(0, 0, 50, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bjdwm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3ohf")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akmj1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn7ef"]
+size = Vector2(48, 37.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qiknu"]
+size = Vector2(37.3333, 26.6667)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e23yi"]
+radius = 144.0
+
+[node name="BossMinion" type="CharacterBody2D" groups=["mobs"]]
+y_sort_enabled = true
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_pq0ao")
+
+[node name="skeleton" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bjdwm")
+
+[node name="collisionArea" type="Area2D" parent="."]
+
+[node name="damageArea" type="CollisionShape2D" parent="collisionArea"]
+position = Vector2(2.66667, 18.6667)
+shape = SubResource("RectangleShape2D_tn7ef")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.66667, 18.6667)
+shape = SubResource("RectangleShape2D_qiknu")
+
+[node name="detectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectPlayer"]
+shape = SubResource("CircleShape2D_e23yi")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="body_entered" from="collisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="body_entered" from="detectPlayer" to="." method="_on_detect_player_body_entered"]
