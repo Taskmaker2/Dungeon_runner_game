@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 90
 var damage = 20
-var health = 3000  #3000
+var health = 1500  #3000
 var dead = false
 var player = null
 var ExpGem := preload("res://effects/ExpGem.tscn")

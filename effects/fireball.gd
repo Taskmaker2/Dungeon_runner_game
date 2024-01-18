@@ -2,7 +2,7 @@ extends Node2D
 
 var damage = 5
 var wallDamage = 5
-var speed = 8
+var speed = 10
 var dead = false
 var direct = Vector2()
 var lookedAt = false

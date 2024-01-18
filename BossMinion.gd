@@ -6,6 +6,7 @@ var health = 30
 var dead = false
 var player 
 var ExpGem := preload("res://effects/ExpGem.tscn")
+var healthOrb := preload("res://effects/healthOrb.tscn")
 var sounds =[]
 
 
@@ -46,9 +47,15 @@ func _physics_process(delta):
 			sounds.shuffle()
 			$AudioStreamPlayer.stream= sounds.front()
 			$AudioStreamPlayer.play()
-			var exp = ExpGem.instantiate() 
-			exp.position = position
-			get_parent().add_child(exp)
+			var num = randi() % 10
+			if num == 1:
+				var exp = healthOrb.instantiate() 
+				exp.position = position
+				get_parent().add_child(exp)
+			else:
+				var exp = ExpGem.instantiate() 
+				exp.position = position
+				get_parent().add_child(exp)
 
 func deathAnimation():
 	$skeleton.play("dead")
